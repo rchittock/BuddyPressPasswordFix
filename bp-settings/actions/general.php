@@ -138,7 +138,7 @@ function bp_settings_action_general() {
 			if ( ! $pass_error->get_error_message() ) {
 				// Password change attempt is successful.
 				if ( ( ! empty( $_POST['pwd'] ) && wp_unslash( $_POST['pwd'] ) !== $pass ) || is_super_admin() )  {
-					$update_user->user_pass = $_POST['pass1'];
+					$update_user->user_pass = wp_hash_password($_POST['pass1']);
 					$pass_error             = false;
 					$pass_changed           = true;
 
